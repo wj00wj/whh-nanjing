@@ -1,13 +1,66 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+    <view class="pageHeader">
+        <wux-search-bar clear controlled value="{{tourName}}" placheholder="团期名称" bind:clear="clearname" bind:cancel="cancelname" bind:change="getname" />
+        <view class='filters'>
+          <view class='filterItem' bindtap='productCategory'>
+            <text>产品类别</text>
+            <image class='img' src='../../images/index-shape.png'></image>
+          </view>
+          <view class='filterItem' bindtap='productOrigin'>
+            <text>出发地</text>
+            <image class='img' src='../../images/index-shape.png'></image>
+          </view>
+        </view>
+    </view>
+    <wux-popup position="top" visible="{{visibleCategory}}" bind:close="hiddenCategory">
+      <scroll-view scroll-y 
+          style="height:360rpx" 
+          bindscrolltoupper="upper"
+          bindscrolltolower="lower"
+          bindscroll="scroll">
+            <view class='product-box'>
+                <view class="productItem {{lineTypeId == ''?'active':''}}" data-info="" bindtap='categoryOn'>全部</view>
+                <view class="productItem {{lineTypeId == item.id ?'active':''}}" wx:for="{{categoryList}}" wx:for-item="item" wx:key="item.id" data-info="{{item.id}}" bindtap='categoryOn'>{{item.name}}</view>
+             </view>
+      </scroll-view>
+    </wux-popup>
+     <wux-popup position="top" visible="{{visibleOrigin}}" bind:close="hiddenOrigin">
+          <scroll-view scroll-y 
+              style="height:360rpx" 
+              bindscrolltoupper="upper"
+              bindscrolltolower="lower"
+              bindscroll="scroll">
+                <view class='product-box'>
+                  <view class="productIdist {{originId == ''?'active':''}}" data-info="" bindtap='originOn'>全部</view>
+                  <view class="productIdist {{originId == item.id?'active':''}}" wx:for="{{originList}}" wx:for-item="item" wx:key="item.id" data-info="{{item.id}}" bindtap="originOn">{{item.name}}</view>
+                </view>
+        </scroll-view>
+    </wux-popup>
+
+    <view class='lineContent'>
+        <view wx:if="{{!isError}}">
+            <view class='item' wx:for='{{list}}' wx:for-item="item" wx:key="id" url="../product/product?id={{item.id}}">
+                <text class="tag">{{item.tourOrigin.name}}出发--{{item.tourType.name}}</text>
+                <view class='img' wx:for="{{item.attachments}}" wx:if="{{index == 0}}" wx:for-item="imgitem" wx:key="{{index}}">
+                    <image class='imgs' lazy-load='true' mode="widthFix" src='{{imgUrl}}/m_showImg.do?path={{imgitem.path}}'></image>
+                </view>   
+                <view class='infomation'>
+                  <text class='regimentName'>{{item.name}}</text>
+                  <view class='texto'>出发团日期:
+                      <text class='dataBox' wx:for="{{item.tourGroups}}" wx:if="{{index<3}}" wx:key="{{index}}" wx:for-item="groupItem">{{groupItem.outDateStr}}</text>
+                  </view>
+                  <view class='infoBox'>
+                      <view class='priceBox'>
+                          <text class='yuan'>￥</text>
+                          <text class='priceNum'>{{item.minNormal}}</text>
+                          <text class='yuan'>元/人起</text>
+                      </view>
+                  </view>
+                </view>
+            </view>
+        </view>
+        <text wx:else class="loadmore">网页跑丢了，请下拉刷新</text>
+        <text wx:if="{{nomore}}" class='loadmore'>暂无团期</text>
+    </view>
 </view>

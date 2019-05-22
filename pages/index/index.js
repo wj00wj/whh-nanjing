@@ -1,54 +1,144 @@
 //index.js
-//获取应用实例
+const api = require('../../config/config.js')
 const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    imgUrl: api.baseUrl,
+    tourName:'',//搜索名称
+    visibleCategory:false,//是否显示产品类别
+    visibleOrigin:false,//是否显示出发地
+    categoryList:[],//产品类别
+    originList:[],//出发地
+    lineTypeId:'',//选择的产品类别  
+    originId:'',//选择的出发地
+    list:[],
+    nomore:false,//没有团期标志
+    isError:false,//返回数据是否出错
+
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+
   onLoad: function () {
-    if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        imgUrl:api.baseUrl
       })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+      wx.showToast({
+        title: '玩命加载中...',
+        icon:'loading'
+      });
+
+  },
+  onShow:function(){
+      this.getRoutes();
+  },
+  getRoutes:function(param){//获取旅游线路
+      var that = this;
+      wx.request({
+        url: api.tourList,
+        method: 'post',
+        header:{
+          'content-type': 'application/json'
+        },
+        data:{ 
+            page:1,
+            rows:100,
+            name: this.data.tourName,
+            lineTypeId: this.data.lineTypeId,
+            originId:this.data.originId,
+        },
+        success(res){
+            wx.hideToast();
+            that.setData({
+              isError:false,
+              categoryList: res.data.tourTypes,
+              originList: res.data.tourOrigins,
+              list:res.data.tours
+            })
+            if(res.data.tours.length == 0){
+              that.setData({
+                nomore:true
+              })
+            }else{
+              that.setData({
+                nomore:false
+              })
+            }
+
+            if(param != undefined){
+              wx.stopPullDownRefresh();
+              wx.showToast({
+                title: '刷新成功',
+                duration:1500
+              })
+            }
+        },
+        fail(){
+          that.setData({
+              isError:true
           })
         }
       })
-    }
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+  onPullDownRefresh: function () {//页面相关事件处理函数--监听用户下拉动作
+      this.getRoutes('isRefresh');//参数为刷新标识
+  },
+  clearname:function(){
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      tourName:''
     })
+    this.getRoutes();
+  },
+  cancelname:function(){
+    this.setData({
+      tourName:''
+    })
+    this.getRoutes();
+  },
+  getname:function(e){
+    this.setData({
+      tourName:e.detail.value
+    })
+    this.getRoutes();
+  },
+  productCategory:function(){
+      this.setData({
+        visibleCategory: true,
+        visibleOrigin: false,
+      })
+  },
+  productOrigin: function(){
+      this.setData({
+        visibleCategory: false,
+        visibleOrigin: true,
+    })
+  },
+  hiddenCategory:function(){//隐藏产品类别
+      this.setData({
+        visibleCategory:false
+      })
+  },
+  hiddenOrigin:function(){//隐藏出发地选择
+      this.setData({
+        visibleOrigin: false
+      })
+  },
+  categoryOn:function(e){//产品类别选择
+      this.setData({
+        lineTypeId:e.currentTarget.dataset.info
+      })
+      this.getRoutes();
+      this.setData({
+        visibleCategory:false
+      })
+  },
+  originOn:function(e){//出发地选择
+      this.setData({
+        originId: e.currentTarget.dataset.info
+      })
+      this.getRoutes();
+      this.setData({
+        visibleOrigin: false
+      })
   }
+
 })

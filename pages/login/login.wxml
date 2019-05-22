@@ -1,0 +1,26 @@
+<iview-message id="message"></iview-message>
+<view class="container">
+    <view class="login-weixin" wx:if="{{!hasUserInfo && canIUse}}">
+        <view>我们需要用到您的一下信息</view>
+        <view>1.头像</view>
+        <view>2.昵称</view>
+        <view>3.地区</view>
+        <view>4.性别</view>
+        <button class='btn' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>同意获取</button>
+    </view>
+    <block wx:else> 
+        <view class='login-info'>
+            <view class="login-info-title">
+                <view class="icon-title"></view>
+                <view class="title">登录</view> 
+            </view>
+            <view class="inputcell">
+                <input class="weui-input" type="text" maxlength="11" value="{{tel}}"  placeholder='请输入手机号' bindinput='getTel' />
+            </view>
+            <view class="inputcell">
+                <input class="weui-input" type="text" maxlength='20' value='{{password}}'  placeholder='请输入密码' bindinput='getPassword'/>
+            </view>
+            <button class='btn-pass' size='mini' bindtap='login'>登录</button>
+        </view>
+    </block>
+</view>
