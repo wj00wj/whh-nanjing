@@ -1,0 +1,138 @@
+<iview-message id="message"/>
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='container'>
+    <view class='page-section'>
+        <swiper indicator-dots="true" autoplay='false' circular="true" interval="5000" duration="500">
+            <block wx:for="{{tour.attachments}}" wx:key="{{index}}">
+                <swiper-item>
+                    <image src="{{imgUrl}}/m_showImg.do?path={{item.path}}"  mlazy-load='true' width="100%"/>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class='mark'>
+            <view>{{tour.tourOrigin.name}}出发</view>
+        </view>
+    </view>
+    <view class='sections'>
+        <view class='proname'>{{tour.name}}</view>
+        <view class=' priceBox'>
+              <view class='display-flex'>
+                  <view class="priceTag" wx:for="{{tourGroup.groupPrices}}" wx:key="{{index}}">
+                      <view class='price'>
+                          <view wx:if='{{item.priceType == 0}}'>{{item.fromAge}}~{{item.toAge}} <text class="orgTag">￥</text><text class="orgPrice">{{item.price}}</text></view>
+                          <view wx:if='{{item.priceType == 1}}'>儿童不占床 <text class="orgTag">￥</text><text class="orgPrice">{{item.price}}0</text></view>
+                          <view wx:if="{{item.priceType == 2}}">儿童占床 <text class="orgTag">￥</text><text class="orgPrice">{{item.price}}</text></view>
+                      </view>
+                  </view>
+              </view>
+        </view>
+    </view>
+    <view class='groupPlan'>
+        <view class='group-flex'>
+            <view class='group-title'>时间</view>
+            <swiper class="datalist" display-multiple-items="3" current="{{swipercurrent}}" bindchange="change">
+                <view wx:for="{{tour.tourGroups}}" wx:key="{{index}}" data-info="{{index}}" bindtap="getDataBtn">
+                    <swiper-item class="swiper-item">
+                        <image wx:if='{{item.outNumber-item.applynum!=0}}' src="{{isData==index?'../../images/tour-time-1.png':'../../images/tour-time-2.png'}}"  mlazy-load='true' mode="scaleToFill"/>
+                        <image wx:else src="{{isData==index?'../../images/tour-time-1.png':'../../images/tour-time-3.png'}}"  mlazy-load='true' mode="scaleToFill"/>
+
+                        <view wx:if='{{item.outNumber-item.applynum==0}}' class='groupData fullNumber {{isData==index?"current":""}}'>{{item.outDateStr}}</view>
+                        <view wx:else class='groupData {{isData==index?"current":""}}'>{{item.outDateStr}}</view>
+                        <view wx:if='{{item.outNumber-item.applynum==0}}' class='groupNumber fullNumber {{isData==index?"current":""}}'>已满</view>
+                        <view wx:elif='{{item.outNumber-item.applynum>0 && item.outNumber-item.applynum<5}}' class='groupNumber {{isData==index?"current":""}}'>余位{{item.outNumber-item.applynum}}</view>
+                        <view wx:else class='groupNumber {{isData==index?"current":""}}'>余位>5</view>
+                    </swiper-item>
+                </view>
+            </swiper>
+            <view class='group-more' wx:if='{{isGroupButtonMore}}' bindtap="groupButton">更多>></view>
+        </view>
+    </view>
+
+    <wux-popup position="bottom" visible="{{groupVisible}}" bind:close="hideGroup">
+        <scroll-view scroll-y 
+            style="height:720rpx" 
+            bindscrolltoupper="upper"
+            bindscrolltolower="lower"
+            bindscroll="scroll">
+            <view class='group-all-flex'>
+            <view class="datalist group-stage" wx:for="{{tour.tourGroups}}" wx:key="{{index}}" data-info="{{index}}" bindtap="getDataBtn">
+                <view class='swiper-item'>
+                    <image wx:if='{{item.outNumber-item.applynum!=0}}' src="{{isData==index?'../../images/tour-time-1.png':'../../images/tour-time-2.png'}}"  mlazy-load='true' mode="scaleToFill"/>
+                    <image wx:else src="{{isData==index?'../../images/tour-time-1.png':'../../images/tour-time-3.png'}}"  mlazy-load='true' mode="scaleToFill"/>
+
+                    <view wx:if='{{item.outNumber-item.applynum==0}}' class='groupData fullNumber {{isData==index?"current":""}}'>{{item.outDateStr}}</view>
+                    <view wx:else class='groupData {{isData==index?"current":""}}'>{{item.outDateStr}}</view>
+                    <view wx:if='{{item.outNumber-item.applynum==0}}' class='groupNumber fullNumber {{isData==index?"current":""}}'>已满</view>
+                    <view wx:elif='{{item.outNumber-item.applynum>0 && item.outNumber-item.applynum<5}}' class='groupNumber {{isData==index?"current":""}}'>余位{{item.outNumber-item.applynum}}</view>
+                    <view wx:else class='groupNumber {{isData==index?"current":""}}'>余位>5</view>
+                </view>
+            </view>
+            </view>
+        </scroll-view>
+    </wux-popup>
+
+    <view class='tour'>
+      <view class='tour-name'>服务团队</view>
+      <view class='tour-item'>
+          <view wx:for='{{tourGroup.tourGroupPersons}}' wx:key='{{index}}'>{{item.name}}(
+          <text wx:if='{{item.type == 1}}'>导游</text>
+          <text wx:if='{{item.type == 2}}'>保健医</text>
+          <text wx:if='{{item.type == 3}}'>随团业务员</text>
+          <text wx:if='{{item.type == 4}}'>领队人员</text>
+          )--{{item.phone}}</view>
+      </view>
+    </view>
+
+    <view class='tour'>
+        <wux-tabs controlled current='{{tabcurrent}}' theme="positive" bindchange="tabChange">
+            <wux-tab key="tab1" title="行程"></wux-tab>
+            <wux-tab key="tab2" title="出行须知"></wux-tab>
+            <wux-tab key="tab3" title="预定须知"></wux-tab>
+        </wux-tabs>
+        <view wx:if='{{tab1}}'>
+            <view class='tab-name'>详细行程</view>
+                <view class='tab-trip'>
+                    <view class='lines'></view>
+                    <view class='daybig' wx:for='{{tour.travelPlans}}' wx:key='index'>
+                        <view class='flexs daytitle'>
+                            <view class='tour-day'>{{item.fate}}</view>
+                            <view class='tour-title'>{{item.name}}</view>
+                        </view>
+                        <view class='flexs iconlist'>
+                            <image class='smallIcon' src='../../images/tour-icon3.png'></image>
+                            <view class='introWords'>
+                                <view>
+                                    <rich-text nodes='{{item.description}}' class='rich'></rich-text>
+                                </view>
+                                <view class='imgboxs'>
+                                    <image wx:for='{{item.attachments}}' wx:for-item="imgItem" wx:key='{{index}}' src='{{imgUrl}}/m_showImg.do?path={{imgItem.path}}'></image>
+                                </view>
+                            </view>
+                        </view>
+                        <view class='flexs iconlist'>
+                            <image class='smallIcon' src='../../images/tour-icon2.png'></image>
+                            <view class='introWords'>{{item.meal}}</view>
+                        </view>
+                    </view>
+                </view>
+        </view>
+        <view wx:if='{{tab2}}'>
+           <view class='tour-item'>  
+              <rich-text nodes="{{tour.travelNotice}}" class='rich'></rich-text>
+           </view>
+        </view>
+         <view wx:if='{{tab3}}'>
+            <view class='tour-item'>  
+              <rich-text nodes="{{tour.bookNotice}}" class='rich'></rich-text>
+            </view>
+        </view>
+    </view>
+    <view class='backTop' wx:if='{{backTopValue}}' bindtap='backTop'><image src='../../images/tour-backtop.png'></image></view>
+    <view class='footer'>
+        <view class='telBtn' bindtap='call'>
+          <image mode='aspectFit' src='../../images/tour-call.png'></image>
+        </view>
+        <view class='tour-btn' wx:if='{{remainSeat!=0}}' bindtap='getPlaceholder'>预留占位</view>
+        <view class='tour-btn tour-dis-btn' wx:if='{{remainSeat==0}}'>预留占位</view>
+    </view>
+</view>

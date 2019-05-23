@@ -39,7 +39,7 @@ Page{
 }
 .productItem{
   margin: 10rpx;
-  width: 110rpx;
+  width: 30%;
   height: 70prx;
   line-height: 70rpx;
   text-align: center;
@@ -50,7 +50,7 @@ Page{
 }
 .productIdist{
   margin: 12rpx 10rpx;
-  width: 180rpx;
+  width: 30%;
   height: 70prx;
   line-height: 70rpx;
   text-align: center;
@@ -59,28 +59,70 @@ Page{
   border: 1px solid #fc8238;
   border-radius: 10rpx;
 }
+.activeCate{
+  color:#fc8238;
+}
 .active{
   background: #fc8238;
   color: #ffffff;
 }
 .lineContent{
-  margin: 150rpx 20rpx 0 20rpx;
+  margin: 170rpx 10rpx 0 10rpx;
+  width:90%;
   overflow-x: hidden;
 }
 .lineContent .item{
   position: relative;
-  margin:20rpx;
+  margin:20rpx 0;
+  border-bottom: 1px solid #e5e5e5;
 }
 .lineContent .item .tag{
-  position: absolute;
-
-}
-.lineContent .item .img{
-  width: 100%;
-  height:466rpx;
-
+  position:absolute;
+  background:rgba(0,0,0,0.5);
+  font-size:24rpx;
+  color:#ffffff;
+  opacity:0.5;
+  height:40rpx;
+  line-height:40rpx;
+  width:300rpx;
+  text-align:center;
+  overflow:hidden;
+  border-top-left-radius:12rpx;
 }
 .lineContent .item .img .imgs{
   width: 100%;
-
+  height:320rpx;
+  border-radius: 12rpx;
+}
+.infomation{
+  margin-top: 10rpx;
+}
+.infomation .regimentName{
+  margin: 10rpx 0;
+  font-size:36rpx;
+  color:#2e2e2e;
+}
+.infomation .texto{
+  margin: 10rpx 0;
+  font-size:28rpx;
+  color:#616161;
+}
+.infomation .texto .dataBox{
+  margin:0 10rpx;
+}
+.infomation .infoBox{
+  margin: 20rpx 0;
+}
+.infomation .infoBox .yuan{
+  color: #fc8238;
+  font-size:28rpx;
+}
+.infomation .infoBox .priceNum{
+  color:#fc8238;
+  font-size:40rpx;
+}
+.infomation .infoBox .yuanStart{
+  margin-left:10rpx;
+  font-size:28rpx;
+  color:#616161;
 }

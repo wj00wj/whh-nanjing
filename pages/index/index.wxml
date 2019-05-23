@@ -4,12 +4,14 @@
         <wux-search-bar clear controlled value="{{tourName}}" placheholder="团期名称" bind:clear="clearname" bind:cancel="cancelname" bind:change="getname" />
         <view class='filters'>
           <view class='filterItem' bindtap='productCategory'>
-            <text>产品类别</text>
-            <image class='img' src='../../images/index-shape.png'></image>
+            <text class="{{categorySelected==true?'activeCate':''}}">产品类别</text>
+            <image wx:if="{{!categorySelected}}" class='img' src='../../images/index-shape.png'></image>
+            <image wx:if="{{categorySelected}}" class='img' src='../../images/index-shape-selected.png'></image>
           </view>
           <view class='filterItem' bindtap='productOrigin'>
-            <text>出发地</text>
-            <image class='img' src='../../images/index-shape.png'></image>
+            <text  class="{{originSelected==true?'activeCate':''}}">出发地</text>
+            <image wx:if="{{!originSelected}}" class='img' src='../../images/index-shape.png'></image>
+            <image wx:if="{{originSelected}}" class='img' src='../../images/index-shape-selected.png'></image>
           </view>
         </view>
     </view>
@@ -27,7 +29,7 @@
     </wux-popup>
      <wux-popup position="top" visible="{{visibleOrigin}}" bind:close="hiddenOrigin">
           <scroll-view scroll-y 
-              style="height:360rpx" 
+              style="height:700rpx" 
               bindscrolltoupper="upper"
               bindscrolltolower="lower"
               bindscroll="scroll">
@@ -40,25 +42,33 @@
 
     <view class='lineContent'>
         <view wx:if="{{!isError}}">
-            <view class='item' wx:for='{{list}}' wx:for-item="item" wx:key="id" url="../product/product?id={{item.id}}">
+            <navigator class='item' wx:for='{{list}}' wx:for-item="item" wx:key="id" url="../tour/tour?id={{item.id}}">
                 <text class="tag">{{item.tourOrigin.name}}出发--{{item.tourType.name}}</text>
-                <view class='img' wx:for="{{item.attachments}}" wx:if="{{index == 0}}" wx:for-item="imgitem" wx:key="{{index}}">
-                    <image class='imgs' lazy-load='true' mode="widthFix" src='{{imgUrl}}/m_showImg.do?path={{imgitem.path}}'></image>
-                </view>   
+                <view wx:if="{{item.attachments.length !=0}}">
+                    <view class='img' wx:for="{{item.attachments}}" wx:if="{{index == 0}}" wx:for-item="imgitem" wx:key="{{index}}">
+                      <image class='imgs' lazy-load='true' mode="scaleToFill" src='{{imgUrl}}/m_showImg.do?path={{imgitem.path}}'></image>
+                  </view>   
+                </view>
+                <view wx:else>
+                    <view class='img'>
+                        <image class='imgs' lazy-load='true' mode="scaleToFill" src='{{src}}'></image>
+                    </view>
+                </view>
+                
                 <view class='infomation'>
                   <text class='regimentName'>{{item.name}}</text>
-                  <view class='texto'>出发团日期:
+                  <view class='texto'>发团日期:
                       <text class='dataBox' wx:for="{{item.tourGroups}}" wx:if="{{index<3}}" wx:key="{{index}}" wx:for-item="groupItem">{{groupItem.outDateStr}}</text>
                   </view>
                   <view class='infoBox'>
                       <view class='priceBox'>
                           <text class='yuan'>￥</text>
                           <text class='priceNum'>{{item.minNormal}}</text>
-                          <text class='yuan'>元/人起</text>
+                          <text class='yuanStart'>元/人起</text>
                       </view>
                   </view>
                 </view>
-            </view>
+            </navigator>
         </view>
         <text wx:else class="loadmore">网页跑丢了，请下拉刷新</text>
         <text wx:if="{{nomore}}" class='loadmore'>暂无团期</text>

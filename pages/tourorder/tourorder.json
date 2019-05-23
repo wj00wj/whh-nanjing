@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "wux-cell-group": "../../wuxdist/cell-group/index",
+    "wux-cell": "../../wuxdist/cell/index",
+    "wux-button": "../../wuxdist/button/index",
+    "wux-popup": "../../wuxdist/popup/index",
+    "iview-message": "../../iviewdist/message/index"
+  },
+  "navigationBarTitleText": "团期详情"
+}

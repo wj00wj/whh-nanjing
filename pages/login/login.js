@@ -1,5 +1,5 @@
 const api = require('../../config/config.js')
-const {$Message} = require('../../iviewdist/message/index.js')
+const { $Message } = require('../../iviewdist/base/index.js')
 const app = getApp()
 
 Page({

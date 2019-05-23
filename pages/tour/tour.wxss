@@ -1,0 +1,284 @@
+@import "../../wxParse/wxParse.wxss";
+.container{
+  background: #f0f3f6;
+}
+.page-section{
+  display: block;
+  width: 100%;
+  position: relative;
+  height: 500rpx!important;
+}
+.page-section swiper{
+  width: 100%;
+  height: 500rpx;
+}
+.page-section image{
+  width: 100%;
+  height: 100%;
+}
+.mark{
+  position: absolute;
+  left: 40rpx;
+  bottom:50rpx;
+  padding: 10rpx;
+  width: 105rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  color: #ffffff;
+  font-size: 24rpx;
+  background: rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.sections{
+  position: relative;
+  margin:-32rpx 0 10rpx 0;
+  width: 100%;
+  background: #ffffff;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  z-index: 10;
+}
+.proname{
+  margin: 32rpx auto 10rpx;
+  width: 700rpx;
+  line-height: 50rpx;
+  color: #2e2e2e;
+  font-size: 36rpx;
+}
+.priceBox{
+  width: 700rpx;
+  margin: 0 auto;
+}
+.display-flex{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  align-items: flex-start;
+  margin-bottom:32rpx;
+}
+.priceTag{
+  width: 33%;
+}
+.price{
+  margin-bottom: 4rpx;
+  width: 230rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  color: #616161;
+  text-align: center;
+  font-size: 24rpx;
+}
+.orgTag{
+  color:#fc8238;
+}
+.orgPrice{
+  font-size: 28rpx;
+  color:#fc8238;
+}
+
+.groupPlan{
+  margin: 20rpx auto;
+  width: 100%;
+  background: #ffffff;
+}
+.group-flex{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:center;
+  margin: 0 auto;
+  width: 700rpx;
+}
+.datalist{
+  width: 75%;
+  height: 150rpx;
+}
+.group-title{
+  margin-right:10rpx;
+  color: #616161;
+  font-size: 28rpx;
+}
+.datalist .swiper-item{
+  position: relative;
+  margin-top: 20rpx;
+}
+.datalist image{
+  width:160rpx;
+  height: 110rpx;
+}
+.datalist .groupData{
+  position: absolute;
+  top:5%;
+  color:#ff0000;
+  font-size:24rpx;
+  left:10%;
+}
+.datalist .groupNumber{
+  position: absolute;
+  top:36%;
+  color:#ff0000;
+  font-size:24rpx;
+  left:28%;
+}
+.datalist .groupData.fullNumber,
+.datalist .groupNumber.fullNumber{
+  color: #ffffff;
+}
+.datalist .groupData.current,
+.datalist .groupNumber.current{
+  color: #ffffff;
+}
+.group-more{
+  margin-left:10rpx;
+  color: #616161;
+  font-size: 28rpx;
+}
+.group-all-flex{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  justify-content:flex-start;
+  margin: 0 auto;
+  width: 700rpx;
+}
+.datalist.group-stage{
+  width: 30%;
+  height: 150rpx;
+}
+.datalist.group-stage .groupData{
+  top:7%;
+  left:20%;
+}
+.datalist.group-stage .groupNumber{
+  top:50%;
+  left:33%;
+}
+.btnbox{
+  text-align: center;
+}
+.closebtn{
+  background: #f0f3f6;
+}
+.confirmbtn{
+  background: #fc8238;
+}
+
+.tour{
+  margin: 10rpx auto;
+  width: 100%;
+  color: #616161;
+  background: #ffffff;
+}
+.tour-name{
+  margin: 10rpx auto;
+  width: 700rpx;
+  line-height: 50rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.tour-item{
+  padding: 40rpx;
+  width: 670rpx;
+  font-size: 28rpx!important;
+  overflow: hidden;
+}
+.rich{
+  width: 566rpx!important;
+}
+.tab-name{
+  margin: auto;
+  width: 750rpx;
+  text-align: center;
+  font-size: 36rpx;
+}
+.tab-trip{
+  position: relative;
+  overflow: hidden;
+  width: 750rpx;
+}
+.lines {
+  position: absolute;
+  width: 1rpx;
+  height: 100%;
+  left: 79rpx;
+  top: 48rpx;
+  background: rgb(247, 247, 247);
+  z-index: 1;
+}
+.smallIcon {
+  position: relative;
+  margin-top: 6rpx;
+  width: 33rpx;
+  height: 33rpx;
+  z-index: 2;
+}
+.introWords {
+  font-size: 26rpx;
+  line-height: 42rpx;
+  margin-left: 45rpx;
+  width: 566rpx;
+}
+.iconlist {
+  margin: 20rpx 20rpx 20rpx 30rpx;
+  width: 640rpx;
+}
+.tour-day {
+  position: relative;
+  margin-right: 25rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  z-index: 2;
+}
+.daytitle {
+  margin: 30rpx 47rpx 30rpx 100rpx;
+}
+.tour-title {
+  font-size: 26rpx;
+  font-weight: bold;
+  line-height: 60rpx;
+  width: 380rpx;
+}
+.telBtn{
+  margin: 12rpx auto;
+  width: 44%;
+  height: 856rpx;
+  text-align: center;
+}
+.telBtn image{
+  width: 86rpx;
+  height: 86rpx;
+}
+.tour-btn{
+  width: 55%;
+  height:86rpx;
+  letter-spacing:15rpx;
+  text-align: center;
+  line-height: 86rpx;
+  color: #fff;
+  background: #fc8238 ;
+  border-radius: 10rpx;
+  font-size: 36rpx;
+  margin: 12rpx 10rpx;
+}
+.tour-btn.tour-dis-btn{
+  color: #fff;
+  background: #bbb ;
+}
+.backTop{
+  position: fixed;
+  right: 40rpx;
+  bottom: 320rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+.backTop image{
+  margin: 20rpx 0 0 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}

@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "iview-message":"../../iviewdist/message/index",
-    "iview-button":"../../iviewdist/button/button"
+    "iview-button":"../../iviewdist/button/index"
   },
   "navigationBarTitleText":"登录"
 }

@@ -12,10 +12,12 @@ Page({
     originList:[],//出发地
     lineTypeId:'',//选择的产品类别  
     originId:'',//选择的出发地
+    categorySelected:false,
+    originSelected:false,
     list:[],
     nomore:false,//没有团期标志
     isError:false,//返回数据是否出错
-
+    src:'../../images/index-default.png',//默认列表图片
   },
 
   onLoad: function () {
@@ -37,7 +39,7 @@ Page({
         url: api.tourList,
         method: 'post',
         header:{
-          'content-type': 'application/json'
+          'content-type': "application/x-www-form-urlencoded"
         },
         data:{ 
             page:1,
@@ -104,22 +106,28 @@ Page({
       this.setData({
         visibleCategory: true,
         visibleOrigin: false,
+        categorySelected:true,
+        originSelected:false,
       })
   },
   productOrigin: function(){
       this.setData({
         visibleCategory: false,
         visibleOrigin: true,
+        categorySelected: false,
+        originSelected: true,
     })
   },
   hiddenCategory:function(){//隐藏产品类别
       this.setData({
-        visibleCategory:false
+        visibleCategory:false,
+        categorySelected:false,
       })
   },
   hiddenOrigin:function(){//隐藏出发地选择
       this.setData({
-        visibleOrigin: false
+        visibleOrigin: false,
+        originSelected:false
       })
   },
   categoryOn:function(e){//产品类别选择
@@ -128,7 +136,8 @@ Page({
       })
       this.getRoutes();
       this.setData({
-        visibleCategory:false
+        visibleCategory:false,
+        categorySelected: false,
       })
   },
   originOn:function(e){//出发地选择
@@ -137,7 +146,8 @@ Page({
       })
       this.getRoutes();
       this.setData({
-        visibleOrigin: false
+        visibleOrigin: false,
+        originSelected: false
       })
   }
 
