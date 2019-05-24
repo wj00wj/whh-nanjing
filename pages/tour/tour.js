@@ -76,9 +76,9 @@ Page({
   },
   getPlaceholder:function(){
       var remainSeat = this.data.tourGroup.outNumber-this.data.tourGroup.applynum;//剩余位
-      if(remainSeat != 0 && app.globalData.login == 1){//有余位且登录
+      // if(remainSeat != 0 && app.globalData.login == 1){//有余位且登录
           wx.navigateTo({
-            url: '../tourorder/tourorder?id='+this.data.tourGroup.id+'&remainSeat='+remainSeat+'&lineTypeId='+this.data.tour.lineTypeId,
+            url: '../tourorder/tourorder?id='+this.data.tourGroup.id+'&remainSeat='+remainSeat+'&lineTypeId='+this.data.tour.lineTypeId+'&name='+this.data.tour.name+'&outDate='+this.data.tourGroup.outDateStr+'&img='+this.data.tour.attachments[0].path,//lineTypeId:线路类型id,outDate:出团日期
             success:function(){
 
             },
@@ -89,18 +89,18 @@ Page({
 
             }
           })
-      }else if(app.globalData.login != 1){//未登录，跳转登录页面
-          wx.navigateTo({
-            url: '../login/login?isProduct=1'
-          })
-          app.globalData.login = 0;
-      }else{//余位不足
-          $Message({
-            content: '余位不足！',
-            type: 'error',
-            duration: 2
-          });
-      }
+      // }else if(app.globalData.login != 1){//未登录，跳转登录页面
+      //     wx.navigateTo({
+      //       url: '../login/login?isProduct=1'
+      //     })
+      //     app.globalData.login = 0;
+      // }else{//余位不足
+      //     $Message({
+      //       content: '余位不足！',
+      //       type: 'error',
+      //       duration: 2
+      //     });
+      // }
   },
   getDataBtn:function(e){
       var i = e.currentTarget.dataset.info;

@@ -35,4 +35,9 @@ Page{
 }
 .group-jump{
   width: 10%;
+  text-align: right;
+}
+.group-jump image{
+  width: 20rpx;
+  height: 34rpx;
 }

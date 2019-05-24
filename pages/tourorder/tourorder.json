@@ -4,6 +4,7 @@
     "wux-cell": "../../wuxdist/cell/index",
     "wux-button": "../../wuxdist/button/index",
     "wux-popup": "../../wuxdist/popup/index",
+    "wux-swipe-action": "../../wuxdist/swipe-action/index",
     "iview-message": "../../iviewdist/message/index"
   },
   "navigationBarTitleText": "团期详情"

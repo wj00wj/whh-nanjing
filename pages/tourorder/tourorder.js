@@ -9,16 +9,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+      right:[
+        {
+          text:'取消',
+          style: 'background-color: #ddd; color: white',
+        },
+        {
+          text:'删除',
+          style:'background-color: #F4333C; color: white'
+        }
+      ],
+      imgUrl: api.baseUrl,
+      name:'',//线路名称
+      outDate:'',//出团日期
+      remainSeat:'',//剩余位：
+      lineTypeId:'',//线路类型id
+      img:'',//线路图片
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-  },
+      this.setData({
+        name: options.name,
+        outDate:options.outDate,
+        remainSeat: options.remainSeat,
+        lineTypeId: options.lineTypeId,
+        img:options.img
+      })
 
+  },
+  onClick:function(e){
+      console.log('onclick',e.detail)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -36,7 +36,7 @@ App({
   globalData: {
     userInfo: null,//微信信息
     userData:null,//用户信息
-    tel:"",//用户手机号
+    tel:"13522274682",//用户手机号
     login:'0',//判断是否登录状态，0未登录，1登录
   }
 })

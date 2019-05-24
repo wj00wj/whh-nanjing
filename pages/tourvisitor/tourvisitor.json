@@ -1,11 +1,9 @@
 {
   "usingComponents": {
-    "wux-cell-group": "../../wuxdist/cell-group/index",
-    "wux-cell": "../../wuxdist/cell/index",
     "wux-popup": "../../wuxdist/popup/index",
-    "wux-checkbox-group":"../../wuxdist/checkbox-group/index",
-    "wux-checkbox":"../../wuxdist/checkbox/index",
-    "iview-message": "../../iviewdist/message/index"
+    "iview-message": "../../iviewdist/message/index",
+    "view-checkbox-group": "../../iviewdist/checkbox-group/index",
+    "view-checkbox": "../../iviewdist/checkbox/index"
   },
   "navigationBarTitleText": "出游人"
 }
