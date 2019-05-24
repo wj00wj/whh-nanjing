@@ -13,6 +13,7 @@ Page({
     userInfo:{},
     hasUserInfo:false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),//判断小程序的API，回调，参数，组件等是否在当前版本可用
+    isLogin:false,//判断是否输入tel password 可以点击登录
     isProduct:0//是否从产品详情页跳转的登录 0-不是 1--是
   },
 
@@ -20,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      if(options.product == 1){
+      if(options.isProduct == 1){
         this.setData({
           isProduct:1
         })
@@ -54,12 +55,14 @@ Page({
   },
   getTel:function(e){
       this.setData({
-        tel:e.detail.value
+        tel:e.detail.value,
+        isLogin:true
       })
   },
   getPassword:function(e){
       this.setData({
-        password:e.detail.value
+        password:e.detail.value,
+        isLogin:true
       })
   },
   login:function(e){//登录
@@ -86,6 +89,7 @@ Page({
                   duration:2000,
                   mask:true,
                   success:function(){
+                    console.log(that.data.isProduct+"----------")
                     if(that.data.isProduct == 1){
                       wx.navigateBack({//返回产品详情页
                         changed:true

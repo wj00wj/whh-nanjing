@@ -6,7 +6,9 @@
     "pages/my/my",
     "pages/order/order",
     "pages/tour/tour",
-    "pages/tourorder/tourorder"
+    "pages/tourorder/tourorder",
+    "pages/tourvisitor/tourvisitor",
+    "pages/editvisitor/editvisitor"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,38 @@
+Page{
+  background: #f0f3f6;
+}
+.group{
+  margin: 10rpx auto;
+  width: 100%;
+  background: #ffffff;
+}
+.groupAdd{
+  margin: 30rpx auto;
+  text-align: center;
+  font-size: 29rpx;
+  color: #fc8238;
+}
+.group-flex{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 130rpx;
+}
+.group-radio{
+  width: 15%;
+} 
+.group-info{
+  width: 70%;
+}
+.group-info .group-info-name{
+  margin: 4rpx auto;
+  font-size: 28rpx;
+}
+.group-info .group-info-idcard{
+  margin: 4rpx auto;
+  color: #616161;
+  font-size: 24rpx;
+}
+.group-jump{
+  width: 10%;
+}

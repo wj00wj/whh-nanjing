@@ -18,9 +18,12 @@
                 <input class="weui-input" type="text" maxlength="11" value="{{tel}}"  placeholder='请输入手机号' bindinput='getTel' />
             </view>
             <view class="inputcell">
-                <input class="weui-input" type="text" maxlength='20' value='{{password}}'  placeholder='请输入密码' bindinput='getPassword'/>
+                <input class="weui-input" password type="text" maxlength='20' value='{{password}}'  placeholder='请输入密码' bindinput='getPassword'/>
             </view>
-            <button class='btn-pass' size='mini' bindtap='login'>登录</button>
+            <view class='inputBtn'>
+              <button wx:if='{{!isLogin}}' class='btn-pass' size='mini'>登录</button>
+              <button wx:if='{{isLogin}}' class='btn-pass active' size='mini' bindtap='login'>登录</button>
+            </view>
         </view>
     </block>
 </view>

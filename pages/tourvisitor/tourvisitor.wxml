@@ -1,0 +1,20 @@
+<iview-message id="message"/>
+<view class='container'>
+  <view class='group'>
+      <navigator class='groupAdd' url='../editvisitor/editvisitor'>+添加出游人</navigator>
+  </view>
+  <view class='group'>
+      <view class='group-flex'>
+          <view class='group-radio'>
+              <wux-checkbox color='balanced' title="" value="雷佳" />
+          </view>
+          <view class='group-info'>
+              <view class='group-info-name'>雷佳</view>
+              <view class='group-info-idcard'>身份证:150402199207141723</view>
+          </view>
+          <view class='group-jump'>
+              <image src='../../images/visitor-arrow'></image>
+          </view>
+      </view>
+  </view>
+</view>
