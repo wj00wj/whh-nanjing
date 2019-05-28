@@ -9,28 +9,59 @@
   </view>
 
   <view class='tour-order-visitor'>
-      <wux-swipe-action autoClose right="{{right}}" bind:click="onClick">
+      <view wx:for='{{formlist}}' wx:key='{{index}}' class='swiper-action'>
           <view class='tour-order-flex tour-order-info'>
               <view class='visitor-img'><image src='../../images/tour-jian.png'></image></view>
               <view class='visitor-info'>
-                  <text class='visitor-name'>李道金</text>
-                  <view class='visitor-idcid'>身份证号<text class='visitor-identity'>150402199207141723</text></view>
-                  <view class='visitor-rest'>
-                      <view class='visitor-phone'>电话<text class='visitor-tel'>13522274682</text></view>
-                      <view class='visitor-price'>价格<text class='visitor-money'>10000</text></view>
+                  <text class='visitor-name'>{{item.name}}</text>
+                  <view class='visitor-idcid'>
+                    <text class='visitor-identity-name'>身份证号</text>
+                    <text class='visitor-identity'>{{item.identity}}</text>
                   </view>
+                  <view class='visitor-rest'>
+                      <view class='visitor-phone'>
+                        <text class='visitor-identity-name visitor-identity-phone'>电话</text>
+                        <text class='visitor-tel'>{{item.phone}}</text>
+                      </view>
+                  </view>
+                  <view class='visitor-choose'>
+                      <view class='visitor-identity-name'>人员类型</view>
+                      <radio-group class="radio-group" bindchange="radioChange" data-info='{{index}}'>
+                        <label class="radio radio-adult">
+                          <radio value="3" checked='{{item.personType=="3"}}' color="#fc8238" />
+                          <text class='radio-text'>成人</text>
+                        </label>
+                        <label class="radio radio-child-bed">
+                          <radio value="1" checked='{{item.personType=="1"}}' color="#fc8238" />
+                          <text class='radio-text'>儿童占床</text>
+                        </label>
+                        <label class="radio">
+                          <radio value="2" checked='{{item.personType=="2"}}' color="#fc8238"  />
+                          <text class='radio-text'>儿童不占床</text>
+                        </label>  
+                      </radio-group>
+                  </view>
+                  <view class='visitor-sign'>
+                      <view class='visitor-identity-name'>是否为签署代表</view>
+                      <checkbox class='visitor-checked' value="合同" checked='{{item.isSign}}' disabled='{{item.disabled}}' data-info='{{index}}' bindchange='signChange' color="#fc8238" ></checkbox>
+                  </view>
+                  <view class='visitor-price'>
+                      <text class='visitor-price-single'>价格</text>
+                      <text class='visitor-money'>￥10000</text>
+                    </view>
+
               </view>
           </view>
-      </wux-swipe-action>
+      </view>
 
-      <view class='tour-order-flex tour-order-total'>
-          <view class='tour-person'>人数<text class='tour-num'>1人</text></view>
-          <view class='tour-total-price'>总价<text class='tour-price'>100000</text></view>
+      <view class='tour-order-flex tour-order-total' wx:if='{{formlist.length != 0}}'>
+          <view class='tour-person'>人数<text class='tour-num'>{{formlist.length}}人</text></view>
+          <view class='tour-total-price'>总价<text class='tour-price'>{{totalPrice}}</text></view>
       </view> 
   </view>
 
   <view class='tour-order-add'>
-      <navigator class='groupAdd' url='../tourvisitor/tourvisitor'>添加出游人</navigator>
+      <navigator hover-class='none' class='groupAdd' url='../tourvisitor/tourvisitor?remainSeat={{remainSeat}}'>添加出游人</navigator>
   </view>
 
   <view class='footer'>

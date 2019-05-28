@@ -41,3 +41,14 @@ Page{
   width: 20rpx;
   height: 34rpx;
 }
+.tour-btn{
+  margin: auto;
+  width: 90%;
+  letter-spacing:15rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: #fff;
+  background: #fc8238 ;
+  border-radius: 10rpx;
+  font-size: 36rpx;
+}

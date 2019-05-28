@@ -1,0 +1,58 @@
+Page{
+  background: #f0f3f6;
+}
+.visitor-content{
+  margin-top: 20rpx;
+  margin-bottom: 100rpx;
+  width: 100%;
+   background: #ffffff;
+}
+.visitor-flex{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  padding: 25rpx 40rpx;
+  font-size: 28rpx;
+  border-bottom: 1px solid #ddd;
+}
+.visitor-flex .v-name{
+  width: 25%;
+}
+.visitor-flex input{
+  width: 75%;
+}
+.visitor-flex .texts{
+  border: 1px solid #ddd;
+  width: 500rpx;
+  height: 180rpx;
+}
+.visitor-flex .visitor-back{
+  position: absolute;
+  width: 20rpx;
+  height: 34rpx;
+  right: 30rpx;
+}
+.tour-btn{
+  margin: auto;
+  width: 90%;
+  letter-spacing:15rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: #fff;
+  background: #fc8238 ;
+  border-radius: 10rpx;
+  font-size: 36rpx;
+}
+.visitor-upload{
+  display: inline-block;
+  box-sizing: border-box;
+  width: 156rpx;
+  height: 156rpx;
+  line-height: 156rpx;
+  text-align: center;
+  border: 2rpx dashed #d9d9d9;
+  border-radius: 8rpx;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+}

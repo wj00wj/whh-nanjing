@@ -9,22 +9,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-      right:[
-        {
-          text:'取消',
-          style: 'background-color: #ddd; color: white',
-        },
-        {
-          text:'删除',
-          style:'background-color: #F4333C; color: white'
-        }
-      ],
+      // right:[
+      //   {
+      //     text:'取消',
+      //     style: 'background-color: #ddd; color: white',
+      //   },
+      //   {
+      //     text:'删除',
+      //     style:'background-color: #F4333C; color: white'
+      //   }
+      // ],
       imgUrl: api.baseUrl,
       name:'',//线路名称
       outDate:'',//出团日期
-      remainSeat:'',//剩余位：
+      remainSeat:'',//剩余位
       lineTypeId:'',//线路类型id
       img:'',//线路图片
+      formlist:[],//出游人列表
+      totalPrice:'',//总价
 
   },
 
@@ -39,10 +41,16 @@ Page({
         lineTypeId: options.lineTypeId,
         img:options.img
       })
-
+   
   },
   onClick:function(e){
       console.log('onclick',e.detail)
+  },
+  radioChange:function(e){
+
+  },
+  signChange:function(e){
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -55,7 +63,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    console.log(this.data.formlist)
+    if(this.data.formlist.length != 0){
+      var formlist = this.data.formlist;
+      for(var i=0;i<formlist.length;i++){
+        this.data.formlist[i].personType = '';//personType 1：儿童占床 2：儿童不占床 3：成人
+        this.data.formlist[i].isSign = 0;
+        this.data.formlist[i].disabled = false;
+      }
+    }
   },
 
   /**

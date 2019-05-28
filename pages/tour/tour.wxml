@@ -83,7 +83,7 @@
       </view>
     </view>
 
-    <view class='tour'>
+    <view class='tour tour-last'>
         <wux-tabs controlled current='{{tabcurrent}}' theme="positive" bindchange="tabChange">
             <wux-tab key="tab1" title="行程"></wux-tab>
             <wux-tab key="tab2" title="出行须知"></wux-tab>
@@ -110,8 +110,17 @@
                             </view>
                         </view>
                         <view class='flexs iconlist'>
+                            <image class='smallIcon' src='../../images/tour-icon1.png'></image>
+                            <view class='introWords' wx:for="{{item.tourPlanMeals}}" wx:key='{{index}}'>
+                                <view wx:if='{{item.type == 1}}'>早餐:<text class='introMeal'>{{item.place}}</text>餐标:<text class='introMeal'>{{item.standard}}</text></view>
+                                <view wx:if='{{item.type == 2}}'>午餐:<text class='introMeal'>{{item.place}}</text>餐标:<text class='introMeal'>{{item.standard}}</text>></view>
+                                <view wx:if='{{item.type == 3}}'>晚餐:<text class='introMeal'>{{item.place}}</text>餐标:<text class='introMeal'>{{item.standard}}</text></view>
+                                
+                            </view>
+                        </view>
+                        <view class='flexs iconlist'>
                             <image class='smallIcon' src='../../images/tour-icon2.png'></image>
-                            <view class='introWords'>{{item.meal}}</view>
+                            <view class='introWords'>{{item.reside}}</view>
                         </view>
                     </view>
                 </view>

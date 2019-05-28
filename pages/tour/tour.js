@@ -82,7 +82,7 @@ Page({
             success:function(){
 
             },
-            fail: function(){
+            fail: function(){   
 
             },
             complete:function(){

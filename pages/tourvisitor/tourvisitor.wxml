@@ -6,7 +6,8 @@
   <view class='group'>
       <view class='group-flex' wx:for='{{customers}}' wx:key='index'>
           <view class='group-radio'>
-              <view-checkbox value='' disabled='{{item.identityState == 1?disabled:""}}' checked='{{checked}}' data-info='{{index}}' bindchange='getVisitor'></view-checkbox>
+              <!-- <view-checkbox value='' disabled='{{item.identityState == 1?true:false}}' checked='{{item.checked}}' data-info='{{index}}' bindchange='getVisitor'></view-checkbox> -->
+              <view-checkbox value=''  checked='{{item.checked}}' data-info='{{index}}' bindchange='getVisitor' color="#fc8238" ></view-checkbox>
           </view>
           <view class='group-info'>
               <view class='group-info-name'>{{item.name}}</view>
@@ -16,5 +17,8 @@
               <image src='../../images/visitor-arrow.png'></image>
           </view>
       </view>
+  </view>
+  <view class='footer'>
+    <view class='tour-btn' bindtap='deterVisitor'>确定</view>
   </view>
 </view>

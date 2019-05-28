@@ -173,6 +173,9 @@
   color: #616161;
   background: #ffffff;
 }
+.tour-last{
+  margin-bottom:105rpx; 
+}
 .tour-name{
   margin: 10rpx auto;
   width: 700rpx;
@@ -222,6 +225,9 @@
   line-height: 42rpx;
   margin-left: 45rpx;
   width: 566rpx;
+}
+.introMeal{
+  padding-left: 20rpx;
 }
 .iconlist {
   margin: 20rpx 20rpx 20rpx 30rpx;
