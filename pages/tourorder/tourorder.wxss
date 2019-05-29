@@ -23,8 +23,6 @@ Page{
   border-radius: 14rpx;
 }
 .tour-order-info{
-  margin-bottom: 20rpx;
-  border-radius: 28rpx;
   border-bottom: 1xp solid #616161;
 }
 .order-info{
@@ -55,20 +53,15 @@ Page{
 }
 .visitor-name{
   padding: 10rpx 0;
-  color: #3c3c3d;
+  color: #616161;
   font-size: 32rpx;
 }
 .visitor-idcid{
   padding: 10rpx 0;
   font-size: 28rpx;
 }
-.visitor-identity-name{
-  display: inline-block;
-  width: 33%;
-  color: #979797;
-}
 .visitor-identity{
-  color: #646464;
+  padding-left: 20rpx;
 }
 .visitor-rest{
   display: flex;
@@ -81,18 +74,9 @@ Page{
 }
 .visitor-tel{
   padding-left: 20rpx;
-  color: #646464;
-}
-.visitor-price{
-  text-align: right;
-  font-size: 28rpx;
-}
-.visitor-price-single{
-  color:#979797;
 }
 .visitor-money{
   padding-left: 20rpx;
-  color:#fc8238;
 }
 .tour-order-total{
   height: 112rpx;
@@ -101,23 +85,18 @@ Page{
   color: #2e2e2e;
 }
 .tour-person{
-  width: 50%; 
-  color:#979797;
+  width: 50%;
 }
 .tour-num{
   padding-left: 20rpx;
-  color:#646464;
 }
 .tour-total-price{
   width: 30%;
-  color:#979797;
 }
 .tour-price{
   padding-left: 20rpx;
-  color:#646464;
 }
 .tour-order-add{
-  margin-bottom: 110rpx;
   width: 100%;
   height: 110rpx;
   background: #ffffff;
@@ -143,31 +122,4 @@ Page{
   color: #fff;
   background: #fc8238 ;
   font-size: 36rpx;
-}
-.visitor-choose{
-  display: flex;
-  padding: 20rpx 0;
-  font-size: 28rpx;
-  border-top: 1px solid #eeeeee;
-}
-.visitor-sign{
-  font-size: 28rpx;
-  color: #979797;
-}
-.radio-adult{
-  display:block;
-  width:100%;
-  margin-bottom:20rpx;
-}
-.radio-child-bed{
-  margin-right: 20rpx;
-}
-.visitor-identity-phone{
-  width: 43%;
-}
-.radio-text{
-  color: #646464;
-}
-.visitor-checked{
-  padding-left:4rpx;
 }

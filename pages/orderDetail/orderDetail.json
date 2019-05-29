@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "navigationBarTitleText": "订单详情",
+  "usingComponents": {
+    "wux-textarea": "../../wuxdist/textarea/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f7f9fb",
+  "backgroundTextStyle": "dark"
+
+}

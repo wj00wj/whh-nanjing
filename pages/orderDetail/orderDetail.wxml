@@ -1,0 +1,208 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<wux-toptips id="wux-toptips" />
+<view class="container">
+<view class='detail-box'>
+  <view wx:if='{{isError}}'>
+    <view class='order-box'>
+      <view class='box-title'>订单详情
+        <view class='order-revise'></view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>报名线路</view>
+        <view class='into-linName'>{{orderDetail.lineName}}</view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>订单编号</view>
+        <view class='into-con'>{{orderDetail.orderNum}}</view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>出团日期</view>
+        <view class='into-con'>{{orderDetail.outDatestr}}</view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>下单时间</view>
+        <view class='into-con'>{{orderDetail.createDateStr}}</view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>出游人数</view>
+        <view class='into-con'>{{orderDetail.reserveNum}}人</view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>出游人数</view>
+        <view class='into-con'>{{orderDetail.reserveNum}}人</view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>订单状态</view>
+        <view class='into-con-color'>
+          <text wx:if='{{orderDetail.orderState==1}}'>待支付</text>
+          <text wx:if='{{orderDetail.orderState==2}}'>已支付</text>
+          <text wx:if='{{orderDetail.orderState==3}}'>已退款</text>
+          <text wx:if='{{orderDetail.orderState==4 || orderDetail.orderState==10}}'>
+            <text wx:if='{{orderDetail.payType==0}}'>退订中</text>
+            <text wx:if='{{orderDetail.payType==1}}'>退费中</text>
+          </text>
+          <text wx:if='{{orderDetail.orderState==5}}'>已退订</text>
+          <text wx:if='{{orderDetail.orderState==6}}'>统计审核中</text>
+          <text wx:if='{{orderDetail.orderState==7}}'>驳回到提交人</text>
+          <text wx:if='{{orderDetail.orderState==8}}'>计调审核中</text>
+          <text wx:if='{{orderDetail.orderState==9}}'>驳回到统计</text>
+        </view>
+      </view>
+      <view wx:if='{{orderDetail.orderState==2}}' class='box-into'>
+          <view class='into-des'>正式合同</view>
+          <view wx:if='{{orderDetail.contractExtra != undefined}}'>
+            <view class='order-num' wx:if='{{orderDetail.contractOrder != undefined}}'>
+                <text wx:if='{{orderDetail.contractOrder.contractStatus == 1}}'>
+                  <text class='into-con-color marRec'>待签署</text>
+                  <text class='recond'>重发签署短信</text>
+                </text>
+                <text wx:if='{{orderDetail.contractOrder.contractStatus == 2}}' class='into-con-color'>已签署</text>
+            </view>
+            <view wx:else class='order-num'>
+              <text data-info='{{orderDetail.id}}' class='recond'>发送签署</text>
+            </view>
+          </view>
+      </view>
+      <!--正式合同-->
+      <view class='box-into'>
+        <view class='into-des'>备注信息</view>
+        <view class='into-con'>
+          <!-- <textarea class='remark' disabled="disabled" fixed="true" /> -->
+          <wux-textarea class='remark' disabled="disabled" placeholder="Input your last name" rows="2" showConfirmBar="true"/>
+        </view>
+      </view>
+      <view wx:if='{{orderDetail.orderState==2}}' class='box-into'>
+          <view class='into-des'>补充协议</view>
+          <view wx:if='{{orderDetail.contractExtra != undefined}}'>
+            <view class='order-num' wx:if='{{orderDetail.contractOrder != undefined}}'>
+                <view wx:if='{{orderDetail.contractOrder.supplyContractOrder != undefined}}'>
+                      <text wx:if='{{orderDetail.contractOrder.supplyContractOrder.contractStatus == 1}}' data-info='{{item.contractOrder.supplyContractOrder.id}}' catchtap='supplyressend' class='recond'>重发签署短信</text>
+                      <text wx:if='{{orderDetail.contractOrder.supplyContractOrder.contractStatus == 2}}' class='into-con-color'>已签署</text>
+                      <text wx:if='{{orderDetail.contractOrder.supplyContractOrder.contractStatus == 4}}' class='into-con-color'>签署中</text>
+                </view>
+            </view>
+          </view>
+      </view>
+      <!--正式合同-->
+      <view class='box-into'>
+        <view class='into-des'>房差</view>
+        <view class='into-con-color'>￥{{orderDetail.tourGroup.roomRepair}}</view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>实际支付</view>
+        <view class='into-con-color'>￥{{orderDetail.paid}}</view>
+      </view>
+      <!---->
+    </view>
+    <!--订单详情容器-->
+    <view class='order-box' wx:for='{{orderDetail.travelVisitors}}' wx:for-item='item' wx:key='' wx:for-index='index'>
+      <view class='box-title'>出游人{{index+1}}
+        <view class='order-revise'>
+        </view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>姓名</view>
+        <view class='into-linName'>
+          {{item.name}} 
+          <text wx:if='{{item.personType=="1"}}'>（儿童不占床 ）</text>
+          <text wx:if='{{item.personType=="2"}}'>（儿童占床）</text>
+          <text wx:if='{{item.personType=="3"}}'>（成人）</text>
+        </view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>价格</view>
+        <view class='into-con'>{{item.price}} </view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>身份证号</view>
+        <view class='into-con'>{{item.identity}} </view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>年龄</view>
+        <view class='into-con'>{{item.age}} </view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>身份证</view>
+        <view class='into-con'>
+          <view class='ids-box'>
+            <view wx:if='{{item.frontAttachment.path}}' class='imager'>
+              <image lazy-load="true" bindtap="previewImage"  data-src="{{baseUrl}}/m_showImg.do?path={{item.frontAttachment.path}}" mode='widthFix' src='{{baseUrl}}/m_showImg.do?path={{item.frontAttachment.path}}'></image>
+              <!-- 删除按钮 -->
+              <view class="delete" bindtap="deleteImg" data-id='{{item.frontAttachment.id}}'>X</view>
+            </view>
+            <view wx:else class='imager-add' data-sid='{{item.id}}' data-type='1' bindtap='chooseImage'>
+              +
+            </view>
+          </view>
+          <view class='ids-box'>
+            <view wx:if='{{item.backAttachment.path}}' class='imager'>
+              <image lazy-load="true" bindtap="previewImage"  data-src="{{baseUrl}}/m_showImg.do?path={{item.backAttachment.path}}" mode='widthFix' src='{{baseUrl}}/m_showImg.do?path={{item.backAttachment.path}}'></image>
+              <!-- 删除按钮 -->
+              <view class="delete" bindtap="deleteImg" data-id='{{item.backAttachment.id}}'>X</view>
+            </view>
+            <view wx:else class='imager-add' data-sid='{{item.id}}' data-type='2' bindtap='chooseImage'>
+              +
+            </view>
+          </view>
+          <!---->
+        </view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>护照</view>
+        <view class='into-con'>
+          <view class='ids-box'>
+            <view wx:if='{{item.portAttachment.path}}' class='imager'>
+              <image lazy-load="true" bindtap="previewImage"  data-src="{{baseUrl}}/m_showImg.do?path={{item.portAttachment.path}}"  mode='widthFix' src='{{baseUrl}}/m_showImg.do?path={{item.portAttachment.path}}'></image>
+              <!-- 删除按钮 -->
+              <view class="delete" bindtap="deleteImg" data-id='{{item.portAttachment.id}}'>X</view>
+            </view>
+            <view wx:else class='imager-add' data-sid='{{item.id}}' data-type='3' bindtap='chooseImage'>
+              +
+            </view>
+          </view>
+          <!---->
+        </view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>健康证</view>
+        <view class='into-con'>
+          <view class='ids-box'>
+            <view wx:if='{{item.healthAttachment.path}}' class='imager'>
+              <image lazy-load="true" bindtap="previewImage"  data-src="{{baseUrl}}/m_showImg.do?path={{item.healthAttachment.path}}"  mode='widthFix' src='{{baseUrl}}/m_showImg.do?path={{item.healthAttachment.path}}'></image>
+              <!-- 删除按钮 -->
+              <view class="delete" bindtap="deleteImg" data-id='{{item.healthAttachment.id}}'>X</view>
+            </view>
+            <view wx:else class='imager-add' data-sid='{{item.id}}' data-type='4' bindtap='chooseImage'>
+              +
+            </view>
+          </view>
+          <!---->
+        </view>
+      </view>
+      <view class='box-into'>
+        <view class='into-des'>其他</view>
+        <view class='into-con'>
+          <view class='ids-box'>
+            <view wx:if='{{item.otherAttachment.path}}' class='imager'>
+              <image lazy-load="true"  bindtap="previewImage"  data-src="{{baseUrl}}/m_showImg.do?path={{item.otherAttachment.path}}"  mode='widthFix' src='{{baseUrl}}/m_showImg.do?path={{item.otherAttachment.path}}'></image>
+              <!-- 删除按钮 -->
+              <view class="delete" bindtap="deleteImg" data-id='{{item.otherAttachment.id}}'>X</view>
+            </view>
+            <view wx:else class='imager-add' data-sid='{{item.id}}' data-type='5' bindtap='chooseImage'>
+              +
+            </view>
+          </view>
+          <!---->
+        </view>
+      </view>
+      <!--盒子模块-->
+    </view>
+    <!--出游人信息-->
+    <view class='canclebtns' wx:if='{{orderDetail.orderState==9||orderDetail.orderState==8||orderDetail.orderState==7||orderDetail.orderState==6}}' bindtap='cancel'>取消</view>
+    <view class='canclebtns' wx:if='{{orderDetail.orderState==1||orderDetail.orderState==2}}'  bindtap='cancel'>退订</view>
+  </view>
+  <view wx:else  class='loadmore'>
+    加载失败，请下拉刷新
+  </view>
+</view>
+</view>

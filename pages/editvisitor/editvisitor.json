@@ -1,10 +1,9 @@
 {
   "usingComponents": {
+    "wux-cell-group": "../../wuxdist/cell-group/index",
+    "wux-cell": "../../wuxdist/cell/index",
+    "wux-button": "../../wuxdist/button/index",
     "wux-popup": "../../wuxdist/popup/index",
-    "wux-textarea":"../../wuxdist/textarea/index",
-    "wux-radio-group": "../../wuxdist/radio-group/index",
-    "wux-radio": "../../wuxdist/radio/index",
-    "wux-upload": "../../wuxdist/upload/index",
     "iview-message": "../../iviewdist/message/index"
   },
   "navigationBarTitleText": "编辑出游人"

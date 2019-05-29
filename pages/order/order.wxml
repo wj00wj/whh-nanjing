@@ -1,0 +1,105 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="pageHeader">
+    <wux-search-bar clear value="{{ value }}" controlled placeholder="客户姓名" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:cancel="onCancel" confirm-type="搜索" />
+    <view class='filters'>
+        <view class='filterItem' bindtap='orderOrigin'>
+          <text  class="{{originSelected==true?'activeCate':''}}">订单状态</text>
+          <image wx:if="{{!originSelected}}" class='img' src='../../images/index-shape.png'></image>
+          <image wx:if="{{originSelected}}" class='img' src='../../images/index-shape-selected.png'></image>
+        </view>
+      </view>
+  </view>
+  <wux-popup position="top" visible="{{originSelected}}" bind:close="hiddenCategory">
+      <scroll-view scroll-y 
+          style="height:460rpx" 
+          bindscrolltoupper="upper"
+          bindscrolltolower="lower"
+          bindscroll="scroll">
+            <view class='product-box'>
+                <view class="productItem {{orderTypeId == ''?'active':''}}" data-info="" bindtap='categoryOn'>全部</view>
+                <view class="productItem {{orderTypeId == item.value ?'active':''}}" wx:for="{{orderStates}}" wx:for-item="item" wx:key="value" data-info="{{item.value}}" bindtap='categoryOn'>{{item.name}}</view>
+             </view>
+      </scroll-view>
+    </wux-popup>
+    <wux-refresher  class='lineContent'>
+        <view wx:if="{{!nomore}}">
+          <view class='order-box' wx:for='{{orderList}}' wx:key=''  wx:for-index='index' bindtap='orderDetail' wx:for-item='item' data-id='{{item.id}}'>
+            <view class='title-lineName' >{{item.lineName}}</view>
+            <view class='order-num'>
+              <text class='into-des'>订单编号</text>
+              <text class='into-con'>{{item.orderNum}}</text>
+            </view>
+            <view class='order-num'>
+              <view class='con-left'>
+                <text class='into-des'>出团时间</text>
+                <text class='into-con'>{{item.outDatestr}}</text>
+              </view>
+              <view>
+                <text class='into-des'>订单状态</text>
+                <text class='into-con-color'>
+                  <text wx:if='{{item.orderState==1}}'>待支付</text>
+                  <text wx:if='{{item.orderState==2}}'>已支付</text>
+                  <text wx:if='{{item.orderState==3}}'>已退款</text>
+                  <text wx:if='{{item.orderState==4 || item.orderState==10}}'>
+                    <text wx:if='{{item.payType==0}}'>退订中</text>
+                    <text wx:if='{{item.payType==1}}'>退费中</text>
+                  </text>
+                  <text wx:if='{{item.orderState==5}}'>已退订</text>
+                  <text wx:if='{{item.orderState==6}}'>统计审核中</text>
+                  <text wx:if='{{item.orderState==7}}'>驳回到提交人</text>
+                  <text wx:if='{{item.orderState==8}}'>计调审核中</text>
+                  <text wx:if='{{item.orderState==9}}'>驳回到统计</text>
+                </text>
+              </view>
+            </view>
+            <view wx:if='{{item.orderState==2}}'>
+                <view wx:if='{{item.contractExtra != undefined}}'>
+                  <view class='order-num' wx:if='{{item.contractOrder != undefined}}'>
+                    <view class='con-left'>
+                        <text class='into-des'>正式合同</text>
+                        <text wx:if='{{item.contractOrder.contractStatus == 1}}'>
+                          <text class='into-con-color'>待签署</text>
+                          <text class='recond' data-info='{{item.contractOrder.id}}' catchtap='ressend'>重发签署短信</text>
+                        </text>
+                        <text wx:if='{{item.contractOrder.contractStatus == 2}}' class='into-con-color'>已签署</text>
+                        <text wx:if='{{item.contractOrder.contractStatus == 4}}' class='into-con-color'>签署中</text>
+                    </view>
+                    <view wx:if='{{item.contractOrder.supplyContractOrder != undefined}}'>
+                        <text class='into-des'>补充协议</text>
+                          <text wx:if='{{item.contractOrder.supplyContractOrder.contractStatus == 1}}' data-info='{{item.contractOrder.supplyContractOrder.id}}' catchtap='supplyressend' class='recond'>重发签署短信</text>
+                          <text wx:if='{{item.contractOrder.supplyContractOrder.contractStatus == 2}}' class='into-con-color'>已签署</text>
+                          <text wx:if='{{item.contractOrder.supplyContractOrder.contractStatus == 4}}' class='into-con-color'>签署中</text>
+                    </view>
+                  </view>
+                  <view wx:else class='order-num'>
+                    <text data-info='{{item.id}}' catchtap='send' class='recond'>发送签署</text>
+                  </view>
+                </view>
+            </view>
+            <view wx:if='{{item.orderState == 3}}'>
+              <view wx:if='{{item.contractExtra != undefined && item.contractOrder != undefined}}' class='order-num'>
+                <view wx:if='{{item.contractOrder.contractStatus == 5}}'>
+                    <text  class='into-con-color'>作废中</text> 
+                    <text data-info='{{item.contractOrder.id}}' catchtap='ressendsms' class='into-con-color'>重发短信作废</text>
+                </view>
+                <text wx:if='{{item.contractOrder.contractStatus == 3}}' class='into-con-color'>已作废</text>
+              </view>
+            </view>
+            <!--合同信息-->
+            <view class='order-num'>
+                <view class='con-left'>
+                  <text class='into-des'>出游人</text>
+                  <text class='into-con-color'>李道金</text>
+                </view>
+                <view>
+                  <text class='into-des'>实际支付</text>
+                  <text class='into-con-color big-color'>￥{{item.paid}}</text>
+                </view>
+            </view>
+            <!--出游人-->
+          </view>
+        </view>
+        <text wx:if="{{nomore}}" class='loadmore'>暂无订单</text>
+    </wux-refresher>
+</view>

@@ -1,0 +1,122 @@
+/* pages/orderDetail/orderDetail.wxss */
+Page{
+  background: #f7f9fb;
+}
+.container{
+  padding-bottom:60rpx;
+}
+.detail-box{
+  width:90%;
+}
+.order-box{
+  padding: 0rpx 28rpx 20rpx 28rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 0rpx 10rpx #e9e4e4;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+}
+.box-title{
+  font-size: 30rpx;
+  padding: 16rpx 0rpx;
+  color: #2c2c2c;
+  border-bottom: 2px solid #eeeeee;
+}
+.box-into{
+  display: flex;
+  font-size:28rpx;
+  margin: 10rpx;
+}
+.box-into .into-des{
+  color: #979797;
+  width: 150rpx;
+  display: inline-block;
+}
+.box-into .into-linName{
+  color: #2c2c2c;
+}
+.box-into .into-con{
+   color:#646464;
+   flex: 1;
+}
+.box-into .into-con-color{
+   color:#ff9545;
+}
+.box-into .marRec{
+  margin-right: 50rpx;
+}
+.box-into .recond{
+  display:inline-block;
+  padding: 6rpx 10rpx;
+  background: #ff9545;
+  color: #ffffff;
+  font-size: 24rpx;
+  border-radius: 6rpx;
+  margin-top: 6rpx;
+}
+.box-into .remark{
+  width: 100%;
+  display: inline-block;
+  height: 100rpx;
+  border: 1px solid #e9e4e4;
+  border-radius: 6rpx;
+  padding: 10rpx;
+  margin-right: 16rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+.into-con .ids-box{
+  display: inline-block;
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
+  float:left;
+}
+.ids-box .imager{
+  width: 400rpx;
+  height: 230rpx;
+  border: 1px solid #e9e4e4;
+  border-radius: 6rpx;
+  position: relative;
+  display: flex;
+  overflow:hidden;
+}
+.ids-box .imager image{
+  width: 100%;
+  margin: auto;
+  
+}
+/*删除按钮*/
+.ids-box .imager .delete {    
+  position:absolute;
+  right:-2rpx;
+  top:-2rpx;
+  opacity:1;
+  height:20px;
+  font-size:22rpx;
+  width:20px;
+  text-align:center;
+  line-height:20px;
+  color:red;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 0rpx 6rpx 0rpx 6rpx;
+}
+.ids-box .imager-add{
+  border: 1px solid #e9e4e4;
+  border-radius: 6rpx;
+  width: 400rpx;
+  height: 230rpx;
+  line-height: 230rpx;
+  text-align: center;
+  color:#ff9545;
+  font-size: 58rpx;
+}
+.canclebtns{
+  background: #ff9545;
+  color: #ffffff;
+  width: 80%;
+  text-align: center;
+  padding: 20rpx 0rpx;
+  border-radius: 10rpx;
+  margin: 20rpx auto;
+  font-size: 34rpx;
+}

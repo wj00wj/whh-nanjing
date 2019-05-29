@@ -10,49 +10,17 @@ Page({
    */
   data: {
       remainSeat:'',//剩余位
-      current:'',
+      checked:false,
       customers:[],//出游人列表
       formlist:[],//选中的出游人
   },
   getVisitor:function(e){
       var i = e.currentTarget.dataset.info
-      var flag = e.detail.current;
-      if(flag){
-        this.data.customers[i].checked = true;
-        this.setData({
-          customers:this.data.customers
-        })
-        this.data.formlist.push(this.data.customers[i]);
-      }else{
-        this.data.customers[i].checked = false;
-        this.setData({
-          customers: this.data.customers
-        })
-        this.data.formlist.splice(i,1);
-      }
       this.setData({
-        formlist: this.data.formlist
+        checked:e.detail.current
       })
-      console.log(this.data.formlist)
   },
-  deterVisitor:function(e){
-      if(this.data.formlist.length <= this.data.remainSeat){
-        let pages = getCurrentPages();
-        let prevPage = pages[pages.length - 2];
-        prevPage.setData({
-          formlist: this.data.formlist,
-        })
-        wx.navigateBack({
-          delta: 1,
-        })
-      }else{
-        $Message({
-          content: '剩余位不足!',
-          type: 'error',
-          duration: 2
-        })
-      }
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -61,10 +29,24 @@ Page({
       title: '玩命加载中...',
       icon: 'loading'
     });
+    // this.setData({
+    //   ids: options.id,
+    //   remainSeat: opions.remainSeat,
+    // })
+    this.data.formlist.push({
+        id:'',
+        name:'',
+        personType:'',
+        identity:'',
+        phone:'',
+        passport:'',
+        disabled:false
+    })
     this.setData({
-      remainSeat: options.remainSeat,
+      formlist:this.data.formlist
     })
     this.getVisitorList();
+    
   },
   getVisitorList:function(){
       var that = this;
@@ -80,9 +62,6 @@ Page({
         success(res) {
           wx.hideToast();
           if (res.data.code == 0) {
-            for(var i=0;i<res.data.customers.length;i++){
-              res.data.customers[i].checked = false;//添加复选字段
-            }
             that.setData({
               customers: res.data.customers
             })

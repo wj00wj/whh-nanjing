@@ -8,7 +8,8 @@
     "pages/tour/tour",
     "pages/tourorder/tourorder",
     "pages/tourvisitor/tourvisitor",
-    "pages/editvisitor/editvisitor"
+    "pages/editvisitor/editvisitor",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
