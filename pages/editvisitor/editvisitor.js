@@ -25,23 +25,23 @@ Page({
     imgIds:'',//出游人图片字符串
     imgList: [],//出游人图片列表
     identityUpData:{
-      sid:'d02b3c19-32be-40da-ab2c-654437dcf61e',
+      sid:'',
       type:1
     },
     identityDownData: {
-      sid: 'd02b3c19-32be-40da-ab2c-654437dcf61e',
+      sid: '',
       type: 2
     },
     passportData:{
-      sid: 'd02b3c19-32be-40da-ab2c-654437dcf61e',
+      sid: '',
       type: 3
     },
     healthyData:{
-      sid: 'd02b3c19-32be-40da-ab2c-654437dcf61e',
+      sid: '',
       type: 4
     },
     otherData:{
-      sid: 'd02b3c19-32be-40da-ab2c-654437dcf61e',
+      sid: '',
       type: 5
     }
   },

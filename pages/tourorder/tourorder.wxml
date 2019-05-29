@@ -7,7 +7,6 @@
           <view class='order-info-date'>{{outDate}}</view>
       </view>
   </view>
-
   <view class='tour-order-visitor'>
       <view wx:for='{{formlist}}' wx:key='{{index}}' class='swiper-action'>
           <view class='tour-order-flex tour-order-info'>
@@ -49,21 +48,17 @@
                       <text class='visitor-price-single'>价格</text>
                       <text class='visitor-money'>￥10000</text>
                     </view>
-
               </view>
           </view>
       </view>
-
       <view class='tour-order-flex tour-order-total' wx:if='{{formlist.length != 0}}'>
           <view class='tour-person'>人数<text class='tour-num'>{{formlist.length}}人</text></view>
           <view class='tour-total-price'>总价<text class='tour-price'>{{totalPrice}}</text></view>
       </view> 
   </view>
-
   <view class='tour-order-add'>
       <navigator hover-class='none' class='groupAdd' url='../tourvisitor/tourvisitor?remainSeat={{remainSeat}}'>添加出游人</navigator>
   </view>
-
   <view class='footer'>
       <view class='tour-space'></view>
       <view class='tour-btn'>提交订单</view>
