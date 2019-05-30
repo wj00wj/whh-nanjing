@@ -1,5 +1,6 @@
 const api = require('../../config/config.js')
 const app = getApp()
+import { $wuxToptips } from '../../wuxdist/index'
 Page({
 
   /**
@@ -11,6 +12,8 @@ Page({
     orderDetail:'',//订单信息
     people:'',//出游人列表
     baseUrl:api.baseUrl,//地址
+    visible: false,//是否显示退订弹窗
+    reason: '',//退订内容
   },
 
   /**
@@ -191,7 +194,64 @@ Page({
       }
     })
   },
-  cancel(){//取消订单
-
+  cancel(e) {
+    this.setData({
+      visible: true,
+    })
+  },
+  onCloses(){
+    this.setData({
+      visible: false,
+    })
+  },
+  refund: function () {
+    if (this.data.reason != '') {
+      var _this = this
+      wx.request({
+        url: api.baseUrl + '/wx/unsubscribe.do',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        data: {
+          id: _this.data.id,
+          remark: _this.data.reason
+        },
+        method: 'post',
+        success(res) {
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'succes',
+              duration: 2000,
+              mask: true,
+            })
+            _this.setData({
+              visible: false,
+            });
+            _this.onShow();
+          } else {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 2000,
+              mask: true,
+            })
+          }
+        },
+        fail(res) {
+          _this.setData({
+            isError: false
+          })
+        }
+      })
+    } else {
+      $wuxToptips().show({
+        icon: 'cancel',
+        hidden: false,
+        text: '退单理由不能为空！',
+        duration: 3000,
+        success() { },
+      })
+    }
   }
 })

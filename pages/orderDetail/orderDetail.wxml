@@ -1,5 +1,11 @@
 <!--pages/orderDetail/orderDetail.wxml-->
 <wux-toptips id="wux-toptips" />
+<wux-popup position="bottom" visible="{{ visible }}" bind:close="onCloses">
+  <view>
+    <textarea class='textss' bindinput="getreason" value='{{reason}}' fixed='true' placeholder="退订/取消原因（必填）" maxlength='120' />
+  </view>
+  <view class='confirms' bindtap='refund'>确定</view>
+</wux-popup>
 <view class="container">
 <view class='detail-box'>
   <view wx:if='{{isError}}'>

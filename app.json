@@ -9,36 +9,37 @@
     "pages/tourorder/tourorder",
     "pages/tourvisitor/tourvisitor",
     "pages/editvisitor/editvisitor",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/password/password"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "backgroundColor":"#ffffff",
+    "backgroundColor": "#ffffff",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "万户侯",
     "navigationBarTextStyle": "black"
   },
-  "tabBar":{
-    "color":"#030000",
-    "selectedColor":"#030000",
-    "list":[
+  "tabBar": {
+    "color": "#030000",
+    "selectedColor": "#030000",
+    "list": [
       {
-        "pagePath":"pages/index/index",
-        "text":"旅游",
-        "iconPath":"images/icon/icon-trour.png",
-        "selectedIconPath":"images/icon/icon-trour-selected.png"
+        "pagePath": "pages/index/index",
+        "text": "旅游",
+        "iconPath": "images/icon/icon-trour.png",
+        "selectedIconPath": "images/icon/icon-trour-selected.png"
       },
       {
-        "pagePath":"pages/order/order",
-        "text":"订单",
-        "iconPath":"images/icon/icon-order.png",
-        "selectedIconPath":"images/icon/icon-order-selected.png"
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "images/icon/icon-order.png",
+        "selectedIconPath": "images/icon/icon-order-selected.png"
       },
       {
-        "pagePath":"pages/my/my",
-        "text":"我的",
-        "iconPath":"images/icon/icon-my.png",
-        "selectedIconPath":"images/icon/icon-my-selected.png"
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/icon/icon-my.png",
+        "selectedIconPath": "images/icon/icon-my-selected.png"
       }
     ]
   },

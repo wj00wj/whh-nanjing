@@ -80,9 +80,11 @@ Page({
         success(res){
             if(res.data.code == 0){
                console.log(res.data.data)
-               app.globalData.userData = res.data.data
-               app.globalData.tel = res.data.tel
+               app.globalData.userData = res.data.data;
+              app.globalData.tel = res.data.data.tel;
                app.globalData.login = 1;//用户为登录状态
+              wx.setStorageSync('tel', that.data.tel);//本地存储 手机号
+              wx.setStorageSync('password', that.data.password);//本地存储 密码
                wx.showToast({
                   title:"登录成功",
                   icon:'success',

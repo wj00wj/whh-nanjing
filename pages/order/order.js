@@ -1,6 +1,6 @@
 const api = require('../../config/config.js')
 const app = getApp()
-import { $stopWuxRefresher } from '../../wuxdist/index'
+import { $wuxToptips } from '../../wuxdist/index'
 Page({
 
   /**
@@ -11,7 +11,7 @@ Page({
     originSelected:false, //订单状态是否显示
     orderStates: '',//订单状态条件查询
     orderTypeId: '',//选择的订单状态
-    isError:false, //网络状态
+    islogin:'', //登陆状态
     orderList:[],//订单列表
     nomore:false,//是否有订单
   },
@@ -20,9 +20,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '玩命加载中',
-    })
+    wx.showToast({
+      title: '玩命加载中...',
+      icon: 'loading',
+      duration: 1500
+    });
+    if (app.globalData.login == 0) {
+      this.getLogin(); 
+    }
   },
 
   /**
@@ -36,7 +41,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getOrderList();
+    this.setData({
+      islogin: app.globalData.login
+    })
+    if (app.globalData.login == 1) {
+      this.getOrderList();
+    }
   },
 
   /**
@@ -76,42 +86,42 @@ Page({
   },
   getOrderList(param){
     var chat=this;
-    wx.request({
-      url: api.orderList + '?name =' + chat.data.name + '&tel=' + app.globalData.tel + '&rows=100&page=1&orderState=' + chat.data.orderTypeId, // 仅为示例，并非真实的接口地址
-      method: 'get',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        console.log(res.data);
-        if (res.data.total == 0) {
-          chat.setData({
-            nomore: true
-          })
-        }else {
-          wx.hideLoading();
-          chat.setData({
-            nomore: false,
-            orderList: res.data.travelOrders,
-            orderStates: res.data.orderStates
-          })
+    if (app.globalData.tel!=''){
+      wx.request({
+        url: api.orderList + '?name =' + chat.data.name + '&tel=' + app.globalData.tel + '&rows=100&page=1&orderState=' + chat.data.orderTypeId, // 仅为示例，并非真实的接口地址
+        method: 'get',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          wx.hideToast();
+          if (res.data.total == 0) {
+            chat.setData({
+              nomore: true
+            })
+          }else {
+            console.log(res.data.travelOrders);
+            chat.setData({
+              nomore: false,
+              orderList: res.data.travelOrders,
+              orderStates: res.data.orderStates
+            })
+          }
+          if (param != undefined) {
+            wx.stopPullDownRefresh();
+            //隐藏动画
+            wx.hideNavigationBarLoading();
+            wx.showToast({
+              title: '刷新成功',
+              duration: 1500
+            })
+          }
+        },
+        fail() {
+         
         }
-        if (param != undefined) {
-          wx.stopPullDownRefresh();
-          //隐藏动画
-          wx.hideNavigationBarLoading();
-          wx.showToast({
-            title: '刷新成功',
-            duration: 1500
-          })
-        }
-      },
-      fail() {
-        that.setData({
-          isError: true
-        })
-      }
-    })
+      })
+    }
   },
   orderOrigin(){//订单状态开关
     this.setData({
@@ -131,7 +141,6 @@ Page({
   },
   send(e){//发送签署
     var _this = this;
-    console.log("发送合同签署");
     wx.request({
       url: api.baseUrl + '/wx/signEContract.do?',
       header: {
@@ -143,18 +152,21 @@ Page({
       method: 'post',
       success: function (res) {
         if (res.data.result == true) {
-          $Message({
-            content: '发送成功！',
-            type: 'success',
-            duration: 2
-          });
+          $wuxToptips().success({
+            hidden: false,
+            text: '发送成功！',
+            duration: 3000,
+            success() { },
+          })
           _this.list();
         } else {
-          $Message({
-            content: '发送失败！',
-            type: 'error',
-            duration: 2
-          });
+          $wuxToptips().show({
+            icon: 'cancel',
+            hidden: false,
+            text: '发送失败！',
+            duration: 3000,
+            success() { },
+          })
         }
       },
       fail: function (res) {
@@ -174,17 +186,20 @@ Page({
       },
       success: function (res) {
         if (res.data.result == true) {
-          $Message({
-            content: '发送成功！',
-            type: 'success',
-            duration: 2
-          });
+          $wuxToptips().success({
+            hidden: false,
+            text: '发送成功！',
+            duration: 3000,
+            success() { },
+          })
         } else {
-          $Message({
-            content: '发送失败！',
-            type: 'error',
-            duration: 2
-          });
+          $wuxToptips().show({
+            icon: 'cancel',
+            hidden: false,
+            text: '发送失败！',
+            duration: 3000,
+            success() { },
+          })
         }
       },
       fail: function (res) {
@@ -204,17 +219,20 @@ Page({
       },
       success: function (res) {
         if (res.data.result == true) {
-          $Message({
-            content: '发送成功！',
-            type: 'success',
-            duration: 2
-          });
+          $wuxToptips().success({
+            hidden: false,
+            text: '发送成功！',
+            duration: 3000,
+            success() { },
+          })
         } else {
-          $Message({
-            content: '发送失败！',
-            type: 'error',
-            duration: 2
-          });
+          $wuxToptips().show({
+            icon: 'cancel',
+            hidden: false,
+            text: '发送失败！',
+            duration: 3000,
+            success() { },
+          })
         }
       },
       fail: function (res) {
@@ -234,17 +252,20 @@ Page({
       },
       success: function (res) {
         if (res.data.result == true) {
-          $Message({
-            content: '发送成功！',
-            type: 'success',
-            duration: 2
-          });
+          $wuxToptips().success({
+            hidden: false,
+            text: '发送成功！',
+            duration: 3000,
+            success() { },
+          })
         } else {
-          $Message({
-            content: '发送失败！',
-            type: 'error',
-            duration: 2
-          });
+          $wuxToptips().show({
+            icon: 'cancel',
+            hidden: false,
+            text: '发送失败！',
+            duration: 3000,
+            success() { },
+          })
         }
       },
       fail: function (res) {
@@ -253,11 +274,42 @@ Page({
     })
   },
   categoryOn(e){//订单状态查询
-    console.log(e.currentTarget.dataset.info);
     this.setData({
       orderTypeId: e.currentTarget.dataset.info,
       originSelected:false
     });
     this.getOrderList();
+  },
+  getLogin(){//获取本地缓存
+    var chat=this;
+    var tel = wx.getStorageSync('tel');
+    var password = wx.getStorageSync('password');
+    if (tel!=''){
+      wx.request({
+        url: api.loginUrl,
+        method: 'post',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          tel: tel,
+          password: password
+        },
+        success(res) {
+          if (res.data.code == 0) {
+            app.globalData.userData = res.data.data;
+            app.globalData.tel = res.data.data.tel;
+            app.globalData.login = 1;//用户为登录状态
+            //chat.onShow();
+            chat.getOrderList();
+          }
+        }
+      })
+    }
+  },
+  toLogin(){//去登陆
+    wx.navigateTo({
+      url: '../login/login?isProduct=1'
+    })
   }
 })

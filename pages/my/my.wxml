@@ -1,0 +1,29 @@
+<view class="container">
+  <view class='card top'>
+    <image class='card-img' src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text wx:if='{{userData!=null}}' class='card-name'>{{userData.realName}}</text>
+    <text wx:else class='card-name'>暂无</text>
+  </view>
+  <view class='card'>
+    <text class='card-title'>部门</text>
+    <text wx:if='{{userData!=null}}' class='card-con'>{{userData.organization.name}}</text>
+    <text wx:else class='card-con'>暂无</text>
+  </view>
+  <view class='card'>
+    <text class='card-title'>电话</text>
+    <text wx:if='{{userData!=null}}' class='card-con'>{{userData.tel}}</text>
+    <text wx:else class='card-con'>暂无</text>
+  </view>
+  <view class='card'>
+    <text class='card-title'>密码</text>
+    <navigator wx:if='{{userData!=null}}' url='../password/password' class='card-con'>修改密码</navigator>
+    <text wx:else class='card-con'>暂无</text>
+  </view>
+  <view class='card cardarrow'>
+    <text class='card-title'>客户</text>
+    <navigator wx:if='{{userData!=null}}' url='../tourvisitor/tourvisitor' class='card-con to-prene'><image class='next' src='../../images/visitor-arrow.png'></image></navigator>
+    <text wx:else class='card-con'>暂无</text>
+  </view>
+  <view class='loginout' bindtap='goLogin' wx:if='{{islogin!=1}}'>登录</view>
+  <view class='loginout' bindtap='outLogin' wx:else>退出登录</view>
+</view>

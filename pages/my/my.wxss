@@ -1,0 +1,54 @@
+.card{
+  width:750rpx;
+  border-bottom:1px solid #eeeeee;
+  background:#ffffff;
+  padding: 35rpx 20rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+.cardarrow{
+  padding: 0rpx 20rpx;
+  height: 124rpx;
+  line-height: 124rpx;
+}
+.top{
+  border-top:1px solid ghostwhite;
+}
+.card-name{
+  margin-left: 25rpx;
+}
+.card .card-img{
+  width:128rpx;
+  height:128rpx;
+  margin:20rpx;
+  border-radius:50%;
+  vertical-align:middle;
+}
+.card .card-title{
+  color: #979797;
+}
+.card .card-con{
+  color: #979797;
+  float: right;
+}
+.card .to-prene{
+  width: 40rpx;
+  height: 68rpx;
+  display: flex;
+  margin-top: 28rpx;
+}
+.next{
+  width: 20rpx;
+  height:34rpx;
+  margin: auto;
+}
+.loginout{
+  width: 700rpx;
+  height: 76rpx;
+  color: #fff;
+  background: #ffb446;
+  border-radius: 12rpx;
+  margin: 40rpx auto;
+  text-align: center;
+  line-height: 76rpx;
+}

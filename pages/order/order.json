@@ -2,7 +2,8 @@
   "navigationBarTitleText": "订单列表",
   "usingComponents": {
     "wux-search-bar": "../../wuxdist/search-bar/index",
-    "wux-popup": "../../wuxdist/popup/index"
+    "wux-popup": "../../wuxdist/popup/index",
+    "wux-toptips": "../../wuxdist/toptips/index"
   },
   "enablePullDownRefresh": true
 }

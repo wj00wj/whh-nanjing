@@ -120,3 +120,23 @@ Page{
   margin: 20rpx auto;
   font-size: 34rpx;
 }
+.textss{
+  width: 90%;
+  padding: 15rpx;
+  box-sizing: border-box;
+  height: 160rpx;
+  border-radius: 5rpx;
+  border:1rpx solid #ccc;
+  margin: 20rpx auto;
+  display: block;
+  text-align: left;
+}
+.confirms{
+  width: 100%;
+  height: 76rpx;
+  line-height: 76rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  background: #ff9800
+}
